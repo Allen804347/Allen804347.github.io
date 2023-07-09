@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://allen804347.github.io/blog</id>
+    <title>${CODDEE} Blog</title>
+    <updated>2023-07-09T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://allen804347.github.io/blog"/>
+    <subtitle>${CODDEE} Blog</subtitle>
+    <icon>https://allen804347.github.io/img/coddee-100.png</icon>
+    <entry>
+        <title type="html"><![CDATA[first]]></title>
+        <id>https://allen804347.github.io/blog/first</id>
+        <link href="https://allen804347.github.io/blog/first"/>
+        <updated>2023-07-09T00:00:00.000Z</updated>
+        <author>
+            <name>Allen Hsieh</name>
+            <uri>https://allen804347.github.io</uri>
+        </author>
+        <category label="first" term="first"/>
+    </entry>
+</feed>
