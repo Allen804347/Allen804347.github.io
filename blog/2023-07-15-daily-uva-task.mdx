@@ -1,0 +1,55 @@
+---
+slug: daily-uva-task
+title: 每日 C++ 練習
+authors: allen
+tags: [C++, algorithm]
+---
+
+# UVa online judge
+
+## 10013 Super long sums
+
+### date: 07/14
+
+### code
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while(n-- > 0) {
+        int len;
+        cin >> len;
+        string a = "";
+        string b = "";
+        for (int i = 0; i < len; i += 1) {
+            char tempA, tempB;
+            cin >> tempA >> tempB;
+            a += tempA;
+            b += tempB;
+        }
+        int carry = 0;
+        for (int i = len - 1; i >= 0; i -= 1) {
+            int n1 = a[i] - '0';
+            int n2 = b[i] - '0';
+            int temp = n1 + n2 + carry;
+            carry = temp > 9 ? 1 : 0;
+            temp -= carry * 10;
+            a[i] = '0' + temp;
+        }
+        cout << a << endl;
+        if (n > 0) {
+            cout << endl;
+        }
+    }
+    return 0;
+}
+```
+
+### comment
+經典題目大數加法，利用 array 或 string 這類的序列資料結構，存每個位元的資訊，在依序對每個位元進行加法運算，得到加法結果後在分成進位位元和當前位元。
