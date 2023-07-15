@@ -168,23 +168,21 @@ int main()
 #### Minimum spanning tree 最小生成樹
 
 當有 Point 和 Line 時，且每段 Line 具有 Weight(distance, cost...)，尋找將所有 Point 連接起來且 Weight 最低的路徑圖。
-串起所有節點是必要條件，但難點在於尋找最低成本的路徑圖，
 
 ![figure1](../static/img/material/MST-1.webp)
-
 圖 (1) 為所有 Point 與 Line
+
+串起所有節點是必要條件，但難點在於尋找最低 Weight 的路徑圖。
 
 * 不能要冗余的路徑，當有 [A - B, B - C] 時，意味著不需要 [A - C]，因爲可以用 [A - B - C] 代替。
 
 * 最低成本
 
-  ![figure2](../static/img/material/MST-2.webp) 
-
-  圖 (2) 可以連起所有點。
+  ![figure2](../static/img/material/MST-2.webp)
+  圖 (2) 可以連起所有 Point。
 
   ![figure3](../static/img/material/MST-3.webp)
-
-  但圖 (3) 第成本比較低。
+  但圖 (3) 的 Wright 比較低。
 
 上面的程式碼是使用暴力作法完成最低成本與節點分群的功能，但最小生成樹是經典的演算法問題，可以用一些已知的最佳實踐算法來實做。
 
