@@ -53,3 +53,139 @@ int main()
 
 ### comment
 經典題目大數加法，利用 array 或 string 這類的序列資料結構，存每個位元的資訊，在依序對每個位元進行加法運算，得到加法結果後在分成進位位元和當前位元。
+
+## 10034 Freckles
+
+### date: 07/15
+
+### code
+```cpp
+#include <iostream>
+#include <math.h>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Point
+{
+    int root;
+    double x;
+    double y;
+};
+
+struct Line
+{
+    int indexStart; // smallest
+    int indexEnd;   // greatest
+    double distance;
+};
+
+bool compareByLength(const Line &a, const Line &b)
+{
+    return a.distance > b.distance;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    while (true)
+    {
+        int len;
+        cin >> len;
+
+        Point points[len];
+        vector<Line> lines;
+
+        for (int i = 0; i < len; i += 1)
+        {
+            Point point;
+            cin >> point.x >> point.y;
+            point.root = i;
+            points[i] = point;
+        }
+
+        for (int i = 0; i < len; i += 1)
+        {
+            for (int j = i + 1; j < len; j += 1)
+            {
+                Line line;
+                line.indexStart = i;
+                line.indexEnd = j;
+                line.distance = sqrt(pow(abs(points[i].x - points[j].x), 2) + pow(abs(points[i].y - points[j].y), 2));
+                lines.push_back(line);
+            }
+        }
+
+        sort(lines.begin(), lines.end(), compareByLength);
+
+        double ans = 0;
+        while (true)
+        {
+            Line line = lines.back();
+            lines.pop_back();
+
+            if (points[line.indexStart].root == points[line.indexEnd].root)
+                continue;
+            ans += line.distance;
+
+            int root2 = points[line.indexEnd].root;
+            for (int i = 0; i < len; i++)
+            {
+                if (points[i].root == root2)
+                {
+                    points[i].root = points[line.indexStart].root;
+                }
+            }
+            bool done = true;
+            for (int i = 1; i < len; i++)
+            {
+                if (points[0].root != points[i].root)
+                {
+                    done = false;
+                    break;
+                }
+            }
+            if (done)
+            {
+                break;
+            }
+        }
+
+        cout << round(ans * 100) / 100 << endl;
+        n -= 1;
+        if (n == 0) {
+            break;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+```
+
+### comment
+#### Minimum spanning tree 最小生成樹
+
+當有 Point 和 Line 時，且每段 Line 具有 Weight(distance, cost...)，尋找將所有 Point 連接起來且 Weight 最低的路徑圖。
+串起所有節點是必要條件，但難點在於尋找最低成本的路徑圖，
+
+![figure1](/static/img/material/MST-1.webp)
+
+圖 (1) 為所有 Point 與 Line
+
+* 不能要冗余的路徑，當有 [A - B, B - C] 時，意味著不需要 [A - C]，因爲可以用 [A - B - C] 代替。
+
+* 最低成本
+
+  ![figure2](/static/img/material/MST-2.webp) 
+
+  圖 (2) 可以連起所有點。
+
+  ![figure3](/static/img/material/MST-3.webp)
+
+  但圖 (3) 第成本比較低。
+
+上面的程式碼是使用暴力作法完成最低成本與節點分群的功能，但最小生成樹是經典的演算法問題，可以用一些已知的最佳實踐算法來實做。
+
+[最小生成樹介紹與算法說明](http://alrightchiu.github.io/SecondRound/minimum-spanning-treeintrojian-jie.html)
