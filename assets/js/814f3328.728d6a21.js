@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcoddee_blog=self.webpackChunkcoddee_blog||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"\u5496\u5561\u5730\u5716","permalink":"/blog/coffee-map"},{"title":"\u6bcf\u65e5 C++ \u7df4\u7fd2","permalink":"/blog/daily-uva-task"},{"title":"first","permalink":"/blog/first"}]}')}}]);

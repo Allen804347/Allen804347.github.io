@@ -4,10 +4,26 @@
         <title>${CODDEE} Blog</title>
         <link>https://allen804347.github.io/blog</link>
         <description>${CODDEE} Blog</description>
-        <lastBuildDate>Fri, 04 Aug 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 05 Aug 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-Hans</language>
+        <item>
+            <title><![CDATA[前端效能探討]]></title>
+            <link>https://allen804347.github.io/blog/front-end-performance</link>
+            <guid>https://allen804347.github.io/blog/front-end-performance</guid>
+            <pubDate>Sat, 05 Aug 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h1>如何測量</h1><h1>工具</h1><h1>常見效能議題</h1><h1>優化案例</h1>]]></content:encoded>
+            <category>front-end</category>
+        </item>
+        <item>
+            <title><![CDATA[Rive 與 Lottie]]></title>
+            <link>https://allen804347.github.io/blog/rive-versus-lottie</link>
+            <guid>https://allen804347.github.io/blog/rive-versus-lottie</guid>
+            <pubDate>Sat, 05 Aug 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h1>比較</h1>]]></content:encoded>
+            <category>front-end</category>
+        </item>
         <item>
             <title><![CDATA[咖啡地圖]]></title>
             <link>https://allen804347.github.io/blog/coffee-map</link>
@@ -28,13 +44,6 @@
 但圖 (3) 的 Wright 比較低。</p></li></ul><p>上面的程式碼是使用暴力作法完成最低成本與節點分群的功能，但最小生成樹是經典的演算法問題，可以用一些已知的最佳實踐算法來實做。</p><p><a href="http://alrightchiu.github.io/SecondRound/minimum-spanning-treeintrojian-jie.html" target="_blank" rel="noopener noreferrer">最小生成樹介紹與算法說明</a></p>]]></content:encoded>
             <category>C++</category>
             <category>algorithm</category>
-        </item>
-        <item>
-            <title><![CDATA[first]]></title>
-            <link>https://allen804347.github.io/blog/first</link>
-            <guid>https://allen804347.github.io/blog/first</guid>
-            <pubDate>Sun, 09 Jul 2023 00:00:00 GMT</pubDate>
-            <category>first</category>
         </item>
     </channel>
 </rss>

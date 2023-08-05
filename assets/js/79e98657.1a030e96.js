@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcoddee_blog=self.webpackChunkcoddee_blog||[]).push([[7777],{5723:e=>{e.exports=JSON.parse('{"label":"coffee","permalink":"/blog/tags/coffee","allTagsPath":"/blog/tags","count":1}')}}]);

@@ -2,11 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://allen804347.github.io/blog</id>
     <title>${CODDEE} Blog</title>
-    <updated>2023-08-04T00:00:00.000Z</updated>
+    <updated>2023-08-05T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://allen804347.github.io/blog"/>
     <subtitle>${CODDEE} Blog</subtitle>
     <icon>https://allen804347.github.io/img/coddee-100.png</icon>
+    <entry>
+        <title type="html"><![CDATA[前端效能探討]]></title>
+        <id>https://allen804347.github.io/blog/front-end-performance</id>
+        <link href="https://allen804347.github.io/blog/front-end-performance"/>
+        <updated>2023-08-05T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1>如何測量</h1><h1>工具</h1><h1>常見效能議題</h1><h1>優化案例</h1>]]></content>
+        <author>
+            <name>Allen Hsieh</name>
+            <uri>https://allen804347.github.io</uri>
+        </author>
+        <category label="front-end" term="front-end"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rive 與 Lottie]]></title>
+        <id>https://allen804347.github.io/blog/rive-versus-lottie</id>
+        <link href="https://allen804347.github.io/blog/rive-versus-lottie"/>
+        <updated>2023-08-05T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1>比較</h1>]]></content>
+        <author>
+            <name>Allen Hsieh</name>
+            <uri>https://allen804347.github.io</uri>
+        </author>
+        <category label="front-end" term="front-end"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[咖啡地圖]]></title>
         <id>https://allen804347.github.io/blog/coffee-map</id>
@@ -35,16 +59,5 @@
         </author>
         <category label="C++" term="C++"/>
         <category label="algorithm" term="algorithm"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[first]]></title>
-        <id>https://allen804347.github.io/blog/first</id>
-        <link href="https://allen804347.github.io/blog/first"/>
-        <updated>2023-07-09T00:00:00.000Z</updated>
-        <author>
-            <name>Allen Hsieh</name>
-            <uri>https://allen804347.github.io</uri>
-        </author>
-        <category label="first" term="first"/>
     </entry>
 </feed>
