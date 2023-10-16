@@ -2,11 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://allen804347.github.io/blog</id>
     <title>${CODDEE} Blog</title>
-    <updated>2023-08-05T00:00:00.000Z</updated>
+    <updated>2023-10-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://allen804347.github.io/blog"/>
     <subtitle>${CODDEE} Blog</subtitle>
     <icon>https://allen804347.github.io/img/coddee-100.png</icon>
+    <entry>
+        <title type="html"><![CDATA[軒田機器學習筆記]]></title>
+        <id>https://allen804347.github.io/blog/HTML-note</id>
+        <link href="https://allen804347.github.io/blog/HTML-note"/>
+        <updated>2023-10-16T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1>比較</h1>]]></content>
+        <author>
+            <name>Allen Hsieh</name>
+            <uri>https://allen804347.github.io</uri>
+        </author>
+        <category label="machine learning" term="machine learning"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[前端效能探討]]></title>
         <id>https://allen804347.github.io/blog/front-end-performance</id>
@@ -24,7 +36,26 @@
         <id>https://allen804347.github.io/blog/rive-versus-lottie</id>
         <link href="https://allen804347.github.io/blog/rive-versus-lottie"/>
         <updated>2023-08-05T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<h1>比較</h1>]]></content>
+        <summary type="html"><![CDATA[何謂機器學習]]></summary>
+        <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="何謂機器學習">何謂機器學習<a href="#何謂機器學習" class="hash-link" aria-label="何謂機器學習的直接链接" title="何謂機器學習的直接链接">​</a></h2><p>對一份有特徵的資料進行判斷</p><p>舉例
+人  =&gt; 身高 ,體重, 腰圍 -&gt; 是否過重, 是否健康
+過往我們依賴專家的意見，如 BMI 異常或腰圍來判斷，但這樣的判斷模式，容易受限於規模，
+身高 ,體重, 腰圍, 血紅素數值, 血小板數值...
+體檢列表可以列出上千上百種指數，我們也可以針對各個數值判讀，通常每個數值也會也有對應的好壞區間，
+但，假設，有一種人們還不知到的特殊的連結，在身高和血紅素數值間，身高介於 150 - 155 ，血紅素數值介於 12 - 12.25 ，
+有高機率患有特殊疾病，
+;  TODO</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="資料---結果--方法">資料 -&gt; 結果 = 方法<a href="#資料---結果--方法" class="hash-link" aria-label="資料 -> 結果 = 方法的直接链接" title="資料 -> 結果 = 方法的直接链接">​</a></h2><p>假設有一個被設計好的判斷方法可以判別問題的結果，我們是否能夠模仿這個方法？</p><p>先決條件是：這個方法我們還未知。
+如果已經知道這個方法的確切模樣，那直接套用方法就好。</p><p>大量的資料很重要，需要反覆驗證，大量練習。
+想要什麼樣的結果，如果沒辦法精準定義結果，你會訓練出好像可以又好像不行的東西。</p><p>{(xn, yn)} from f -&gt; ML -&gt; g
+xn: 因
+yn: 果
+f: 神妙而不可知的因果關係
+g: 我們對這種神妙的猜想</p><p>其中 yn 是 f 產生的。
+透過 ML 找到跟 f 接近的 g。
+換句話說，因果之間存在某種被規定好的關係，但這個神妙而不可知的因果關係我們沒辦法看透，所以只能透過資料和結果，自己腦補中間的關係。</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="可能信無限多種">可能信無限多種<a href="#可能信無限多種" class="hash-link" aria-label="可能信無限多種的直接链接" title="可能信無限多種的直接链接">​</a></h2><p>hypothesis set
+找到最好的 hypothesis 我們稱之為 g</p><h1>Lecture 2</h1><h2 class="anchor anchorWithStickyNavbar_LWe7" id="perceptron">Perceptron<a href="#perceptron" class="hash-link" aria-label="Perceptron的直接链接" title="Perceptron的直接链接">​</a></h2><p>感知機，這個名字本身不重要，只是歷史因素遺留下來的慣用名字</p><p>g = sign(Sigma 1 ~ N(W_i <em> X_i) - threshold)
+= sign(Sigma 0 ~ N(W_i </em> X_i)) // W_0 = -threshold, X_0 = 1
+= sign(W^T*X)</p>]]></content>
         <author>
             <name>Allen Hsieh</name>
             <uri>https://allen804347.github.io</uri>
@@ -36,7 +67,7 @@
         <id>https://allen804347.github.io/blog/coffee-map</id>
         <link href="https://allen804347.github.io/blog/coffee-map"/>
         <updated>2023-08-04T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<h1>Simple Kaffa</h1><h1>TA Coffee</h1><h1>ALL DAY ROASTING COMPANY</h1><h1>RUFOUS COFFEE</h1><h1>佩洛瑟</h1><h1>聞山咖啡</h1><h1>GABEE</h1><h1>慢動作</h1><h1>羊毛與花</h1><h1>翌日</h1><h1>鴉埠</h1><h1>達文西</h1><h1>James House</h1>]]></content>
+        <content type="html"><![CDATA[<h1>Simple Kaffa</h1><h1>TA Coffee</h1><h1>ALL DAY ROASTING COMPANY</h1><h1>RUFOUS COFFEE</h1><h1>佩洛瑟</h1><h1>聞山咖啡</h1><h1>GABEE</h1><h1>慢動作</h1><h1>羊毛與花</h1><h1>翌日</h1><h1>鴉埠</h1><h1>達文西</h1><h1>James House</h1><h1>瑰夏</h1><h1>某咖啡</h1><h1>balance</h1>]]></content>
         <author>
             <name>Allen Hsieh</name>
             <uri>https://allen804347.github.io</uri>
