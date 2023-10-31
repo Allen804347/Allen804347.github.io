@@ -51,3 +51,94 @@ hypothesis set
 g = sign(Sigma 1 ~ N(W_i * X_i) - threshold)
   = sign(Sigma 0 ~ N(W_i * X_i)) // W_0 = -threshold, X_0 = 1
   = sign(W^T*X)
+
+# Lecture 10
+
+## 基於二元結果的機率 - logistic regression
+想知道一個 0 ~ 1 的結果，不要二元的答案(true/false)，而是更抽象的機率(大 50% 代表更接近於 true，小於則接近 false )
+
+## 執行上的困難，以及折衷作法
+實際很難拿到這種機率的真實資料(拿不到樂透號碼的開獎機率)，用 true == 1, false == 0 來當做有雜訊的答案，
+e.g.
+如果真實機率是 0.7(70%) 那這次拿到 true 代表答案(y)為 1 但有 0.3 的雜訊，如果拿到 false 代表答案(y)為 0 但有 0.7 的雜訊
+
+## sigmoid
+
+用 sigmoid 函數來做分數數轉換
+透過 linear regression 算出來的原始分數，帶進 sigmoid 函數轉換成 0 ~ 1 的函數
+
+s => linear regression 算出來的原始分數
+θ(s) = e^s / 1 + e^s
+分母分子同乘 1/e^s
+= 1 / 1 + e^-s
+
+因為 s 是 linear regression 算出來的原始分數，帶入 s = w^T * x
+原本 h(x) = w^T * x
+帶入 θ(s)
+h'(x) = θ(h(x))
+= 1 / 1 + e^-(w^T * x)
+不要一堆次方符號用 exp 美化一下
+= 1 / 1 + exp(-w^T * x)
+
+## f(x) in logistic regression
+
+logistic regression 是針對結果為 true 或 false 的機率
+f(x) = P(+1|X) or f(x) = P(-1|X)
+可以用這個來表達 f(x)
+擴展 f(x) = P(y|X), y ∈ {+1, -1}
+
+### Likelihood
+P(y|x) = P(+1|x) + P(-1|x)
+P(+1|x) := f(x)
+P(-1|x) = 1 - f(x)
+
+注意，這裡使用的是 := (定義符號)，與等號不同的是，定義代表假設的開端，
+原則上等號要具有絕對的相等意義，
+但定義不同，不需要具備絕對的概念，
+以這裡為例，P(+1|x) := f(x) 代表定義 +1 的機率是 f(x)，
+但不代表這兩者相等，只是假定接下來的推導是以 P(+1|x) := f(x) 為前提進行下去，
+反之 P(-1|x) := f(x), P(+1|x) = 1 - f(x) 也可以作為開端進行推導。
+
+D = {(x_1, y_1),(x_2, y_2), . . . ,(x_N, y_N)}
+D = {(x_1, ◦),(x_2, ×), . . . ,(x_N, ×)}
+這裡是在討論，當我們有真實資料 D，想向他的組成就是 x_i 對應 y_i 的資料集，
+每個 y_i 不是 +1(◦) 就是(×)，可以表示成第二條式子。
+
+#### probability that f generates D
+
+思考 D 這個資料集出現的機率，茫茫資料中出現這樣的資料組的可能性。
+
+P(x_1)f(x_1) * P(x_2)(1 − f(x_2)) * ... * P(x_N)(1 − f(x_N))
+
+參考前面的式子 f(x_i) 代表結果為 ◦， (1 − f(x_i)) 代表結果為 ×。
+
+#### likelihood that h generates D
+
+P(x_1)h(x_1) * P(x_2)(1 − h(x_2)) * ... * P(x_N)(1 − h(x_N))
+
+把 f 替換成 h，當然，h 不是 f，所以這裡想討論的是 h 有多接近 f。
+所以我們會從 H (Hypothesis set) 挑一個最近像 f 的 h。
+如果資料筆數夠多 (N 夠大)，h 應該會很接近 f，稱為大數似然法則。
+
+## Cross-Entropy Error
+
+P(x_1)f(x_1) * P(x_2)(1 − f(x_2)) * ... * P(x_N)(1 − f(x_N))
+v.s.
+P(x_1)h(x_1) * P(x_2)(1 − h(x_2)) * ... * P(x_N)(1 − h(x_N))
+
+兩者在 P(x_i) 的部分是一樣的，在後面的計算中，我們只在乎不一樣的部分 f(x_i) v.s. h(x_i)。
+
+
+max of h => likelihood(logistic h) ∝ ∏(h(y_n * x_n), n = 1 to N)
+max of w => likelihood(logistic w) ∝ ∏(θ(y_n * w^T * x_n), n = 1 to N)
+max of w ∝ ln(∏(θ(y_n * w^T * x_n), n = 1 to N))
+
+注意，這裡使用 ln 有幾個因素，
+1. 為了解決連乘(∏)，ln 可以幫助我們轉換成 sigma。
+2. 將一個函數直接套上 ln => ln(f(x)) v.s f(x) ，ln(f(x)) 的值會縮小但正相關於 f(x)，雖然函數圖形會失真，但轉換後的特性不變，這點對我們的目標沒有嚴重的影響。
+3. 整個推導最後想求的值是 min of w，ln(f(x)) 會比 f(x) 更小，就這點而言選用 ln 是有幫助的。
+4. 綜上所述，ln(f(x)) 和 f(x) 的實質意義不盡相同，但部分特性保有一制，所以選擇做出這樣的轉換。
+
+min of w => (1/N)Σ(-ln(θ(y_n * w^T * x_n)), n = 1 to N)
+
+min of w => (1/N)Σ(ln(1 + exp(y_n * w^T * x_n)), n = 1 to N)
