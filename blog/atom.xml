@@ -31,7 +31,38 @@ g: 我們對這種神妙的猜想</p><p>其中 yn 是 f 產生的。
 換句話說，因果之間存在某種被規定好的關係，但這個神妙而不可知的因果關係我們沒辦法看透，所以只能透過資料和結果，自己腦補中間的關係。</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="可能信無限多種">可能信無限多種<a href="#可能信無限多種" class="hash-link" aria-label="可能信無限多種的直接链接" title="可能信無限多種的直接链接">​</a></h2><p>hypothesis set
 找到最好的 hypothesis 我們稱之為 g</p><h1>Lecture 2</h1><h2 class="anchor anchorWithStickyNavbar_LWe7" id="perceptron">Perceptron<a href="#perceptron" class="hash-link" aria-label="Perceptron的直接链接" title="Perceptron的直接链接">​</a></h2><p>感知機，這個名字本身不重要，只是歷史因素遺留下來的慣用名字</p><p>g = sign(Sigma 1 ~ N(W_i <em> X_i) - threshold)
 = sign(Sigma 0 ~ N(W_i </em> X_i)) // W_0 = -threshold, X_0 = 1
-= sign(W^T*X)</p>]]></content>
+= sign(W^T*X)</p><h1>Lecture 10</h1><h2 class="anchor anchorWithStickyNavbar_LWe7" id="基於二元結果的機率---logistic-regression">基於二元結果的機率 - logistic regression<a href="#基於二元結果的機率---logistic-regression" class="hash-link" aria-label="基於二元結果的機率 - logistic regression的直接链接" title="基於二元結果的機率 - logistic regression的直接链接">​</a></h2><p>想知道一個 0 ~ 1 的結果，不要二元的答案(true/false)，而是更抽象的機率(大 50% 代表更接近於 true，小於則接近 false )</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="執行上的困難以及折衷作法">執行上的困難，以及折衷作法<a href="#執行上的困難以及折衷作法" class="hash-link" aria-label="執行上的困難，以及折衷作法的直接链接" title="執行上的困難，以及折衷作法的直接链接">​</a></h2><p>實際很難拿到這種機率的真實資料(拿不到樂透號碼的開獎機率)，用 true == 1, false == 0 來當做有雜訊的答案，
+e.g.
+如果真實機率是 0.7(70%) 那這次拿到 true 代表答案(y)為 1 但有 0.3 的雜訊，如果拿到 false 代表答案(y)為 0 但有 0.7 的雜訊</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="sigmoid">sigmoid<a href="#sigmoid" class="hash-link" aria-label="sigmoid的直接链接" title="sigmoid的直接链接">​</a></h2><p>用 sigmoid 函數來做分數數轉換
+透過 linear regression 算出來的原始分數，帶進 sigmoid 函數轉換成 0 ~ 1 的函數</p><p>s =&gt; linear regression 算出來的原始分數
+θ(s) = e^s / 1 + e^s
+分母分子同乘 1/e^s
+= 1 / 1 + e^-s</p><p>因為 s 是 linear regression 算出來的原始分數，帶入 s = w^T <em> x
+原本 h(x) = w^T </em> x
+帶入 θ(s)
+h'(x) = θ(h(x))
+= 1 / 1 + e^-(w^T <em> x)
+不要一堆次方符號用 exp 美化一下
+= 1 / 1 + exp(-w^T </em> x)</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="fx-in-logistic-regression">f(x) in logistic regression<a href="#fx-in-logistic-regression" class="hash-link" aria-label="f(x) in logistic regression的直接链接" title="f(x) in logistic regression的直接链接">​</a></h2><p>logistic regression 是針對結果為 true 或 false 的機率
+f(x) = P(+1|X) or f(x) = P(-1|X)
+可以用這個來表達 f(x)
+擴展 f(x) = P(y|X), y ∈ {+1, -1}</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="likelihood">Likelihood<a href="#likelihood" class="hash-link" aria-label="Likelihood的直接链接" title="Likelihood的直接链接">​</a></h3><p>P(y|x) = P(+1|x) + P(-1|x)
+P(+1|x) := f(x)
+P(-1|x) = 1 - f(x)</p><p>注意，這裡使用的是 := (定義符號)，與等號不同的是，定義代表假設的開端，
+原則上等號要具有絕對的相等意義，
+但定義不同，不需要具備絕對的概念，
+以這裡為例，P(+1|x) := f(x) 代表定義 +1 的機率是 f(x)，
+但不代表這兩者相等，只是假定接下來的推導是以 P(+1|x) := f(x) 為前提進行下去，
+反之 P(-1|x) := f(x), P(+1|x) = 1 - f(x) 也可以作為開端進行推導。</p><p>D = {(x_1, y_1),(x_2, y_2), . . . ,(x_N, y_N)}
+D = {(x_1, ◦),(x_2, ×), . . . ,(x_N, ×)}
+這裡是在討論，當我們有真實資料 D，想向他的組成就是 x_i 對應 y_i 的資料集，
+每個 y_i 不是 +1(◦) 就是(×)，可以表示成第二條式子。</p><h4 class="anchor anchorWithStickyNavbar_LWe7" id="probability-that-f-generates-d">probability that f generates D<a href="#probability-that-f-generates-d" class="hash-link" aria-label="probability that f generates D的直接链接" title="probability that f generates D的直接链接">​</a></h4><p>思考 D 這個資料集出現的機率，茫茫資料中出現這樣的資料組的可能性。</p><p>P(x_1)f(x_1) <em> P(x_2)(1 − f(x_2)) </em> ... * P(x_N)(1 − f(x_N))</p><p>參考前面的式子 f(x_i) 代表結果為 ◦， (1 − f(x_i)) 代表結果為 ×。</p><h4 class="anchor anchorWithStickyNavbar_LWe7" id="likelihood-that-h-generates-d">likelihood that h generates D<a href="#likelihood-that-h-generates-d" class="hash-link" aria-label="likelihood that h generates D的直接链接" title="likelihood that h generates D的直接链接">​</a></h4><p>P(x_1)h(x_1) <em> P(x_2)(1 − h(x_2)) </em> ... * P(x_N)(1 − h(x_N))</p><p>把 f 替換成 h，當然，h 不是 f，所以這裡想討論的是 h 有多接近 f。
+所以我們會從 H (Hypothesis set) 挑一個最近像 f 的 h。
+如果資料筆數夠多 (N 夠大)，h 應該會很接近 f，稱為大數似然法則。</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="cross-entropy-error">Cross-Entropy Error<a href="#cross-entropy-error" class="hash-link" aria-label="Cross-Entropy Error的直接链接" title="Cross-Entropy Error的直接链接">​</a></h2><p>P(x_1)f(x_1) <em> P(x_2)(1 − f(x_2)) </em> ... <em> P(x_N)(1 − f(x_N))
+v.s.
+P(x_1)h(x_1) </em> P(x_2)(1 − h(x_2)) <em> ... </em> P(x_N)(1 − h(x_N))</p><p>兩者在 P(x_i) 的部分是一樣的，在後面的計算中，我們只在乎不一樣的部分 f(x_i) v.s. h(x_i)。</p><p>max of h =&gt; likelihood(logistic h) ∝ ∏(h(y_n <em> x_n), n = 1 to N)
+max of w =&gt; likelihood(logistic w) ∝ ∏(θ(y_n </em> w^T <em> x_n), n = 1 to N)
+max of w ∝ ln(∏(θ(y_n </em> w^T * x_n), n = 1 to N))</p><p>注意，這裡使用 ln 有幾個因素，</p><ol><li>為了解決連乘(∏)，ln 可以幫助我們轉換成 sigma。</li><li>將一個函數直接套上 ln =&gt; ln(f(x)) v.s f(x) ，ln(f(x)) 的值會縮小但正相關於 f(x)，雖然函數圖形會失真，但轉換後的特性不變，這點對我們的目標沒有嚴重的影響。</li><li>整個推導最後想求的值是 min of w，ln(f(x)) 會比 f(x) 更小，就這點而言選用 ln 是有幫助的。</li><li>綜上所述，ln(f(x)) 和 f(x) 的實質意義不盡相同，但部分特性保有一制，所以選擇做出這樣的轉換。</li></ol><p>min of w =&gt; (1/N)Σ(-ln(θ(y_n <em> w^T </em> x_n)), n = 1 to N)</p><p>min of w =&gt; (1/N)Σ(ln(1 + exp(y_n <em> w^T </em> x_n)), n = 1 to N)</p>]]></content>
         <author>
             <name>Allen Hsieh</name>
             <uri>https://allen804347.github.io</uri>
